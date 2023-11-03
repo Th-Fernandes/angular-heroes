@@ -2,6 +2,10 @@
   <div *ngFor="let hero of heroes">
     
     <p class="font-bold text-lg"> {{hero.id}} - {{hero.name | uppercase}} </p>
-    <small>{{ 4.92923123123| number: '1.2-2'}}</small>
+    <small>{{ 4.92923123123 | number: '1.2-2'}}</small>
+    <div>
+      <label for="name">Hero name: </label>
+      <input id="name" [(ngModel)]="hero.name" placeholder="name">
+    </div>
   </div>
 </section>
