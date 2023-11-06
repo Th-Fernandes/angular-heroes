@@ -1,11 +1,21 @@
 <section>
   <div *ngFor="let hero of heroes">
+
+    <details>
+      <summary class="font-bold text-lg">
+        {{hero.id}} - {{hero.name | uppercase}}
+      </summary>
+      <div>
+        <label for="name">Hero name: </label>
+        <input id="name" [(ngModel)]="hero.name" placeholder="name">
+      </div>
+    </details>
     
-    <p class="font-bold text-lg"> {{hero.id}} - {{hero.name | uppercase}} </p>
-    <small>{{ 4.92923123123 | number: '1.2-2'}}</small>
-    <div>
-      <label for="name">Hero name: </label>
-      <input id="name" [(ngModel)]="hero.name" placeholder="name">
-    </div>
+    <p>{{name}}</p>
+    <input type="text" (keyup)="setName(product.value)" #product [value]="name" />
+    <input type="text" [(ngModel)]="name" class="border border-black" />
+    <button (click)="setName('Claive')">click me change name for Claive</button>
+
+    <!-- <small>{{ 4.92923123123 | number: '1.2-2'}}</small> -->
   </div>
 </section>
