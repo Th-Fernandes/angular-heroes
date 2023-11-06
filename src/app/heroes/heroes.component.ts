@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HEROES } from 'src/__test__/mock-heroes';
 import { Hero } from 'src/interfaces/hero';
 
 @Component({
@@ -6,14 +7,10 @@ import { Hero } from 'src/interfaces/hero';
   templateUrl: './heroes.component.html',
 })
 export class HeroesComponent {
-  heroes: Hero[] = [
-    {
-      id: 1,
-      name: "blitzCrank"
-    },
-    {
-      id: 2,
-      name: "Pyke"
-    }
-  ]
+  heroes: Hero[] = HEROES;
+  selectedHero: Hero | undefined;
+
+  onSelect(hero: Hero) {
+    this.selectedHero = hero;
+  }
 }
