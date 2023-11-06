@@ -11,6 +11,7 @@ export class HeroesComponent {
   selectedHero: Hero | undefined;
 
   onSelect(hero: Hero) {
+    console.log('fire')
     this.selectedHero = hero;
   }
 }
