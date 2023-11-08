@@ -18,4 +18,9 @@ describe('HeroesLiComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have hero heading', () => {
+    component.hero = { id: 1, name: 'Dr world'}
+    // expect().toMatch(`1 - Dr world`);
+  })
 });

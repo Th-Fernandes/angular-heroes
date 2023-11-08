@@ -1,11 +1,11 @@
 <section>
-    <app-selected-hero  [selectedHero]="selectedHero"/>
-    
-    <ul class="flex gap-4">
-      <app-heroes-li
-        *ngFor="let hero of heroes"
-        [hero]="hero"
-        (select)="onSelect(hero)"
-      />
-    </ul>
+  
+  <ul class="flex gap-4 flex-wrap max-w-full">
+    <app-heroes-li
+      *ngFor="let hero of heroes"
+      [hero]="hero"
+      (select)="onSelect(hero)"
+    />
+  </ul>
+  <app-selected-hero  [selectedHero]="selectedHero"/>
 </section>
