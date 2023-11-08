@@ -1,5 +1,7 @@
 <ul>
-  <li *ngFor="let message of messages">
+  <h2>Messages:</h2>
+  <button (click)="messageService.clearAll()">clear all</button>
+  <li *ngFor="let message of messageService.messages">
     {{message}}
   </li>
 </ul>
