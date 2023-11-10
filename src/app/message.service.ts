@@ -12,5 +12,7 @@ export class MessageService {
 
   clearAll() {
     this.messages = [];
+    this.messages.push('[all messages got cleared out]');
+    setTimeout(() => this.messages = [] , 1200);
   }
 }

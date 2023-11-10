@@ -2,12 +2,20 @@
   <ul>
     <div class="flex gap-4">
       <h2 class="text-xl">
-        <span *ngIf="messageService.messages.length">({{messageService.messages.length}})</span>  Messages:
+        <span *ngIf="messageService.messages.length"
+          >({{ messageService.messages.length }})</span
+        >
+        Messages:
       </h2>
-      <button class="border border-black rounded-lg px-2 hover:bg-gray-100 transition-colors" (click)="messageService.clearAll()">clear all</button>
+      <button
+        class="border border-black rounded-lg px-2 hover:bg-gray-100 transition-colors"
+        (click)="messageService.clearAll()"
+      >
+        clear all
+      </button>
     </div>
     <li *ngFor="let message of messageService.messages">
-      {{message}}
+      {{ message }}
     </li>
   </ul>
 </section>
