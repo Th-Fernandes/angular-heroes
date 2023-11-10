@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { SelectedHeroComponent } from './selected-hero/selected-hero.component';
 import { HeroesLiComponent } from './heroes-li/heroes-li.component';
 import { MessagesComponent } from './messages/messages.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,14 @@ import { MessagesComponent } from './messages/messages.component';
     MessagesComponent,
   ],
   imports: [
+    RouterModule.forRoot([
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+      { path: 'dashboard', component: HeroesComponent },
+      
+    ]) ,
     BrowserModule,
     FormsModule,
-    HttpClientModule 
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

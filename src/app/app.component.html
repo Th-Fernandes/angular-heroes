@@ -1,4 +1,15 @@
+<header>
+  <nav>
+    <ul>
+      <li><a [routerLink]="'/dashboard'">dashboard</a></li>
+      <li><a [routerLink]="'/heroes'">Heroes</a></li>
+    </ul>
+  </nav>
+</header>
 <main>
-  <app-heroes />
+  <!-- <app-heroes /> -->
+  <router-outlet>
+    
+  </router-outlet>
   <app-messages />
 </main>
