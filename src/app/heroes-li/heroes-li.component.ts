@@ -8,5 +8,6 @@ import { Hero } from 'src/interfaces/hero';
 })
 export class HeroesLiComponent {
   @Input() hero?: Hero;
+  @Input() selectedHero?: Hero;
   @Output() select = new EventEmitter();
 }
