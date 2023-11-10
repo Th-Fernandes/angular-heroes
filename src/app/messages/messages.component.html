@@ -1,7 +1,13 @@
-<ul>
-  <h2>Messages:</h2>
-  <button (click)="messageService.clearAll()">clear all</button>
-  <li *ngFor="let message of messageService.messages">
-    {{message}}
-  </li>
-</ul>
+<section class="py-4">
+  <ul>
+    <div class="flex gap-4">
+      <h2 class="text-xl">
+        <span *ngIf="messageService.messages.length">({{messageService.messages.length}})</span>  Messages:
+      </h2>
+      <button class="border border-black rounded-lg px-2 hover:bg-gray-100 transition-colors" (click)="messageService.clearAll()">clear all</button>
+    </div>
+    <li *ngFor="let message of messageService.messages">
+      {{message}}
+    </li>
+  </ul>
+</section>

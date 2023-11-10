@@ -9,5 +9,5 @@ import { MessageService } from '../message.service';
 export class MessagesComponent {
   constructor(
     public messageService: MessageService
-  ) {}
+  ) { }
 } 
