@@ -10,6 +10,7 @@ import { HeroesLiComponent } from './heroes-li/heroes-li.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TopNavComponent } from './top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeroesLiComponent,
     MessagesComponent,
     DashboardComponent,
+    TopNavComponent,
   ],
   imports: [
     RouterModule.forRoot([
