@@ -17,7 +17,7 @@ export class SelectedHeroComponent implements OnInit {
     private heroService: HeroService
   ) { }
 
-  @Input() selectedHero?: Hero
+  selectedHero?: Hero
 
   ngOnInit(): void {
     const idParam = this.getIdParam();

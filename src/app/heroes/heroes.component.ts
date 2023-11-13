@@ -15,7 +15,6 @@ export class HeroesComponent implements OnInit {
   ) {}
 
   heroes: Hero[] = [];
-  selectedHero?: Hero;
 
   ngOnInit(): void {
     this.getHeroes();
@@ -27,7 +26,6 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero) {
-    this.selectedHero = hero;
     this.messageService.add(`HeroesComponent: ${hero.id} - ${hero.name} selected`)
   }
 }
