@@ -1,1 +1,10 @@
-<p>dashboard works!</p>
+<section>
+  <h2>Top Heroes</h2>
+
+  <a 
+    *ngFor="let hero of heroes"
+    [routerLink]="'/hero/detail/' + hero.id"
+  >
+    {{hero.name}}
+  </a>
+</section>
