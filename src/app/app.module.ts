@@ -11,6 +11,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,14 +24,10 @@ import { TopNavComponent } from './top-nav/top-nav.component';
     TopNavComponent,
   ],
   imports: [
-    RouterModule.forRoot([
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'heroes', component: HeroesComponent }
-    ]) ,
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
