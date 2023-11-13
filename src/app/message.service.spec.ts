@@ -13,4 +13,12 @@ describe('MessageService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should clear up all messages', () => { 
+    for(let i = 0; i <= 3; i++)
+      service.add('hello world');
+
+    service.clearAll();
+    expect(service.messages).toHaveSize(0);
+  })
 });
