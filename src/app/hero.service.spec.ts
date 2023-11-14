@@ -22,18 +22,23 @@ describe('HeroService', () => {
     expect(service).toBeTruthy();
   });
 
-  // it('should return heroes array', () => {
-  //   const heroes = service.getHeroes()
-  //     .subscribe(heroes => {
-  //       expect(heroes).toEqual([]);
-  //     });
-  // })
-
   it('should return heroes array', (done: DoneFn) => {
     service.getHeroes()
       .subscribe(heroes => {
         expect(heroes).toEqual(HEROES);
         done();
       });
+  })
+
+  it('should return a single hero', (done: DoneFn) => {
+    const HERO_ID = 13;
+    const HERO = HEROES.find(h => h.id === HERO_ID);
+    expect(HERO).toBeTruthy();
+
+    service.getHeroById(HERO_ID)
+      .subscribe(hero => {
+        expect(hero).toEqual(HERO!);
+        done();
+      })
   })
 });
