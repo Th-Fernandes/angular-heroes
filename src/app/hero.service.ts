@@ -16,9 +16,15 @@ export class HeroService {
   
   getHeroes(): Observable<Hero[]> {
     const observableHeroes = of(HEROES);
-    this.messageService.add(`HeroesService: heroes succesfully fetched`)
+    this.messageService.add(`HeroesService: heroes successfully fetched`);
     return observableHeroes;
     // return this.http.get<Hero[]>('/src/__test__/mock-heroes');
+  }
+
+  getHeroById(id: number) {
+    const observableHero = of(HEROES.find(h => h.id === id));
+    this.messageService.add(`HeroesService: heroes successfully fetched by id [${id}]`);
+    return observableHero;
   }
 
 }

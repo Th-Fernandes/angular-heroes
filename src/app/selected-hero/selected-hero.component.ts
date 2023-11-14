@@ -27,13 +27,11 @@ export class SelectedHeroComponent implements OnInit {
 
   private getIdParam() {
     const routeParam = this.route.snapshot.paramMap;
-    return Number( routeParam.get('id') );
+    return Number(routeParam.get('id'));
   }
 
   private getSelectedHeroById(id: number) {
-    this.heroService.getHeroes().subscribe(heroes => {
-      this.selectedHero = heroes.find(h => h.id === id);    
-    })
+    this.heroService.getHeroById(id).subscribe(hero => this.selectedHero = hero);
   }
 
   navigateToPreviousPath() {
