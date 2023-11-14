@@ -10,15 +10,16 @@ import { MessageService } from './message.service';
 })
 export class HeroService {
   constructor(
-    // private http: HttpClient,
+    private http: HttpClient,
     private messageService: MessageService
   ) { }
+
+  private heroesUrl = 'api/heroes';
   
   getHeroes(): Observable<Hero[]> {
-    const observableHeroes = of(HEROES);
-    this.messageService.add(`HeroesService: heroes successfully fetched`);
-    return observableHeroes;
-    // return this.http.get<Hero[]>('/src/__test__/mock-heroes');
+    // return of(HEROES)
+    // this.messageService.add(`HeroesService: heroes successfully fetched`);
+    return this.http.get<Hero[]>(this.heroesUrl);
   }
 
   getHeroById(id: number) {
