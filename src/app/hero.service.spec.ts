@@ -5,15 +5,19 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HEROES } from 'src/__test__/mock-heroes';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { Hero } from 'src/interfaces/hero';
 
 describe('HeroService', () => {
   let service: HeroService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [  HttpClientTestingModule, HttpClientInMemoryWebApiModule.forRoot(
-        InMemoryDataService, {dataEncapsulation: false }
-      )]
+      imports: [
+        HttpClientTestingModule,
+        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+          dataEncapsulation: false,
+        }),
+      ],
     });
     service = TestBed.inject(HeroService);
   });
@@ -23,22 +27,34 @@ describe('HeroService', () => {
   });
 
   it('should return heroes array', (done: DoneFn) => {
-    service.getHeroes()
-      .subscribe(heroes => {
-        expect(heroes).toEqual(HEROES);
-        done();
-      });
-  })
+    service.getHeroes().subscribe((heroes) => {
+      expect(heroes).toEqual(HEROES);
+      done();
+    });
+  });
 
   it('should return a single hero', (done: DoneFn) => {
     const HERO_ID = 13;
-    const HERO = HEROES.find(h => h.id === HERO_ID);
+    const HERO = HEROES.find((h) => h.id === HERO_ID);
     expect(HERO).toBeTruthy();
 
-    service.getHeroById(HERO_ID)
-      .subscribe(hero => {
-        expect(hero).toEqual(HERO!);
+    service.getHeroById(HERO_ID).subscribe((hero) => {
+      expect(hero).toEqual(HERO!);
+      done();
+    });
+  });
+
+  it('should update hero name', (done: DoneFn) => {
+    const UPDATED_HERO: Hero = {
+      id: 13,
+      name: 'Mr Strong',
+    };
+
+    service.updateHero(UPDATED_HERO).subscribe(() => {
+      service.getHeroById(UPDATED_HERO.id).subscribe((hero) => {
+        expect(hero).toEqual(UPDATED_HERO);
         done();
-      })
-  })
+      });
+    });
+  });
 });
