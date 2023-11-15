@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from 'src/interfaces/hero';
 import { HeroService } from '../hero.service';
@@ -36,5 +36,11 @@ export class SelectedHeroComponent implements OnInit {
 
   navigateToPreviousPath() {
     this.location.back();
+  }
+
+  saveHeroNameChanging() {
+    if(this.selectedHero)
+      this.heroService.updateHero(this.selectedHero)
+        .subscribe(() => this.navigateToPreviousPath() )
   }
 }
