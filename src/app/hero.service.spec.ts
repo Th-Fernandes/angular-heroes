@@ -57,4 +57,16 @@ describe('HeroService', () => {
       });
     });
   });
+
+  it('should create a new hero', (done: DoneFn) => {
+    const NEW_HERO_NAME = 'captain Rumbling';
+
+    service.addHero({name: NEW_HERO_NAME} as Hero).subscribe(() => {
+      service.getHeroes().subscribe(heroes => {
+        const lastHero = heroes[heroes.length - 1];
+        expect(lastHero.name).toEqual(NEW_HERO_NAME);
+        done();
+      })
+    })
+  })
 });
