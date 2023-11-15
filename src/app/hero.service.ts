@@ -10,7 +10,7 @@ import { MessageService } from './message.service';
 export class HeroService {
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) { }
 
   private heroesUrl = 'api/heroes';
@@ -39,6 +39,14 @@ export class HeroService {
       .pipe(
         tap(() => this.messageService.add(`HeroesService: updated hero [${hero.id}]`)),
         catchError(this.handleError<any>('updateHero'))
+      );
+  }
+
+  addHero(hero: Hero) {
+    return this.http.post(this.heroesUrl, hero)
+      .pipe(
+        tap(() => this.messageService.add(`HeroesService: posted hero [${hero.id}]`)),
+        catchError(this.handleError<any>('postedHero'))
       );
   }
 

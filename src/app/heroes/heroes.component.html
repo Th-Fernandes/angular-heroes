@@ -5,5 +5,16 @@
       [hero]="hero"
     />
   </ul>
-  <!-- <app-selected-hero /> -->
+  
+  <div class="flex flex-col max-w-xs">
+    <label for="heroName">add new hero</label>
+    <input type="text" id="heroName" #heroName />
+
+    <button 
+      (click)="addNewHero(heroName.value)"
+      class="bg-emerald-300 text-black p-1 rounded-lg"
+    >
+      Add new hero
+    </button>
+  </div>
 </section>
