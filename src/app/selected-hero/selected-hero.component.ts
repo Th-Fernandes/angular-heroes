@@ -40,7 +40,8 @@ export class SelectedHeroComponent implements OnInit {
 
   saveHeroNameChanging() {
     if(this.selectedHero)
-      this.heroService.updateHero(this.selectedHero)
-        .subscribe(() => this.navigateToPreviousPath() )
+      this.heroService.updateHero(this.selectedHero).subscribe(() => 
+        this.navigateToPreviousPath() 
+      )
   }
 }
