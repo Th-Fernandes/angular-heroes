@@ -4,7 +4,7 @@ import { HeroService } from './hero.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HEROES } from 'src/__test__/mock-heroes';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from 'src/app/in-memory-data.service';
+import { InMemoryDataService } from 'src/app/core/services/in-memory-data.service';
 import { Hero } from 'src/interfaces/hero';
 
 describe('HeroService', () => {
@@ -61,12 +61,12 @@ describe('HeroService', () => {
   it('should create a new hero', (done: DoneFn) => {
     const NEW_HERO_NAME = 'captain Rumbling';
 
-    service.addHero({name: NEW_HERO_NAME} as Hero).subscribe(() => {
-      service.getHeroes().subscribe(heroes => {
+    service.addHero({ name: NEW_HERO_NAME } as Hero).subscribe(() => {
+      service.getHeroes().subscribe((heroes) => {
         const lastHero = heroes[heroes.length - 1];
         expect(lastHero.name).toEqual(NEW_HERO_NAME);
         done();
-      })
-    })
-  })
+      });
+    });
+  });
 });
