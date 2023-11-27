@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { TopNavComponent } from './top-nav/top-nav.component';
-import { MessagesComponent } from './messages/messages.component';
+import { TopNavComponent } from './core/layout/top-nav/top-nav.component';
+import { MessagesComponent } from './feature/messages/messages.component';
 import { RouterTestingModule } from "@angular/router/testing";
 
 describe('AppComponent', () => {

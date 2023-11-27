@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroService } from '../hero.service';
+import { HeroService } from '../../hero.service';
 import { Hero } from 'src/interfaces/hero';
 
 @Component({

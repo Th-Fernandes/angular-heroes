@@ -5,12 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { SelectedHeroComponent } from './selected-hero/selected-hero.component';
-import { HeroesLiComponent } from './heroes-li/heroes-li.component';
-import { MessagesComponent } from './messages/messages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TopNavComponent } from './top-nav/top-nav.component';
+import { HeroesComponent } from './feature/heroes/heroes.component';
+import { SelectedHeroComponent } from './feature/selected-hero/selected-hero.component';
+import { HeroesLiComponent } from './feature/heroes-li/heroes-li.component';
+import { MessagesComponent } from './feature/messages/messages.component';
+import { DashboardComponent } from './feature/dashboard/dashboard.component';
+import { TopNavComponent } from './core/layout/top-nav/top-nav.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
