@@ -4,7 +4,7 @@ import { HeroService } from './hero.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HEROES } from 'src/__test__/mock-heroes';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from 'src/app/in-memory-data.service';
 import { Hero } from 'src/interfaces/hero';
 
 describe('HeroService', () => {

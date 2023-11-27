@@ -1,28 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from 'src/interfaces/hero';
-import { HeroService } from '../../hero.service';
-import {Location} from '@angular/common';
-
+import { HeroService } from 'src/app/core/services/hero.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-selected-hero',
   templateUrl: './selected-hero.component.html',
-  styleUrls: ['./selected-hero.component.scss']
 })
 export class SelectedHeroComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private heroService: HeroService
-  ) { }
+  ) {}
 
-  selectedHero?: Hero
+  selectedHero?: Hero;
 
   ngOnInit(): void {
     const idParam = this.getIdParam();
     const isIdParamValid = idParam != 0 && typeof idParam == 'number';
-    if(isIdParamValid) this.getSelectedHeroById(idParam);
+    if (isIdParamValid) this.getSelectedHeroById(idParam);
   }
 
   private getIdParam() {
@@ -31,7 +29,9 @@ export class SelectedHeroComponent implements OnInit {
   }
 
   private getSelectedHeroById(id: number) {
-    this.heroService.getHeroById(id).subscribe(hero => this.selectedHero = hero);
+    this.heroService
+      .getHeroById(id)
+      .subscribe((hero) => (this.selectedHero = hero));
   }
 
   navigateToPreviousPath() {
@@ -39,9 +39,9 @@ export class SelectedHeroComponent implements OnInit {
   }
 
   saveHeroNameChanging() {
-    if(this.selectedHero)
-      this.heroService.updateHero(this.selectedHero).subscribe(() => 
-        this.navigateToPreviousPath() 
-      )
+    if (this.selectedHero)
+      this.heroService
+        .updateHero(this.selectedHero)
+        .subscribe(() => this.navigateToPreviousPath());
   }
 }
