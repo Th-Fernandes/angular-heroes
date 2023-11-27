@@ -1,11 +1,19 @@
-<li 
+<li
   class="font-bold text-lg border border-black rounded-lg p-4"
   [class.bg-slate-600]="false"
-  >
+>
   <h2 *ngIf="hero">{{ hero.id }} - {{ hero.name | uppercase }}</h2>
-  <button
-    class="bg-slate-600 hover:bg-slate-700 transition-colors text-white p-1 rounded-lg"
-  >
-    <a [routerLink]="'/hero/detail/' + hero?.id ">Select Hero</a>
-  </button>
+
+  <div class="flex flex-col gap-2">
+    <button class="bg-slate-600 hover:bg-slate-900 transition-colors text-white p-1 rounded-lg">
+      <a [routerLink]="'/hero/detail/' + hero?.id">Select Hero</a>
+    </button>
+    <button
+      (click)="deleteHero()"
+      [title]="'remove ' + hero?.name + ' permanently'"
+      class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white p-1 rounded-lg transition-colors"
+    >
+      Delete Hero
+    </button>
+  </div>
 </li>

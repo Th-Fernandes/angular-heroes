@@ -3,6 +3,7 @@
     <app-heroes-li 
       *ngFor="let hero of heroes"
       [hero]="hero"
+      (deleteHeroEvent)="deleteHero(hero.id)"
     />
   </ul>
   
