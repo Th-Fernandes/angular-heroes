@@ -12,7 +12,8 @@ import { MessagesComponent } from './feature/messages/messages.component';
 import { DashboardComponent } from './feature/dashboard/dashboard.component';
 import { TopNavComponent } from './core/layout/top-nav/top-nav.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from 'src/app/core/services/in-memory-data.service';
+import { HeroSearchComponent } from './feature/hero-search/hero-search.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     MessagesComponent,
     DashboardComponent,
     TopNavComponent,
+    HeroSearchComponent,
   ],
   imports: [
     BrowserModule,

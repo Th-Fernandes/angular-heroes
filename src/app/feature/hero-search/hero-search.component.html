@@ -1,0 +1,22 @@
+<div class="flex gap-2">
+  <label for="searchHeroInput">Search for hero:</label>
+  <input
+    #searchBox
+    (input)="search(searchBox.value)"
+    id="searchHeroInput"
+    type="search"
+    class="border border-black rounded-lg outline-none focus:ring transition-shadow px-2"
+  />
+</div>
+<ul>
+  <!-- 
+      - '$' is a convention to tell that the property is a observable
+      - async pipe should be used at observables given that it is possible
+        to work with async data on it
+  -->
+  <li *ngFor="let hero of heroes$ | async">
+    <a routerLink="/hero/detail/{{ hero.id }}">
+      {{ hero.id }} - {{ hero.name }}
+    </a>
+  </li>
+</ul>
