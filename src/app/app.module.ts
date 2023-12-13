@@ -14,6 +14,7 @@ import { TopNavComponent } from './core/layout/top-nav/top-nav.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from 'src/app/core/services/in-memory-data.service';
 import { HeroSearchComponent } from './feature/hero-search/hero-search.component';
+import { JobsPageComponent } from './feature/jobs-page/jobs-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HeroSearchComponent } from './feature/hero-search/hero-search.component
     DashboardComponent,
     TopNavComponent,
     HeroSearchComponent,
+    JobsPageComponent,
   ],
   imports: [
     BrowserModule,
