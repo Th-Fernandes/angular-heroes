@@ -12,7 +12,12 @@ export class JobsPageComponent implements OnInit {
   jobs: Hero[] = [];
 
   ngOnInit() {
+    if (this.jobs.length == 0) this.getAllJobs();
     this.getJobsByUserSearchEntry();
+  }
+
+  getAllJobs() {
+    this.userSearch.getJobs().subscribe((jobs) => (this.jobs = jobs));
   }
 
   getJobsByUserSearchEntry() {
