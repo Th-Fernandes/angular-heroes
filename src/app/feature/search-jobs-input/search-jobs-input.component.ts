@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
 import { UserSearchService } from 'src/app/core/services/user-search.service';
 
 @Component({
@@ -11,24 +10,29 @@ import { UserSearchService } from 'src/app/core/services/user-search.service';
 export class SearchJobsInputComponent implements OnInit {
   constructor(private userSearch: UserSearchService, private router: Router) {}
 
-  searchInput = new FormControl<string>('');
+  searchInputControl = new FormControl<string>('');
+  jobsRoute = '/jobs';
 
   ngOnInit(): void {
     this.userSearch.searchInputValue.subscribe((inputValue) => {
-      console.log(inputValue)
-      this.searchInput.setValue(inputValue);
+      console.log('lorem');
+      this.searchInputControl.setValue(inputValue);
     });
   }
 
   onSubmitSearch() {
     this.userSearch.registerAvailableJobs();
+    this.makeInputValueAvailableToService();
+    this.redirectWhenUserIsNotOnJobsPath();
+  }
 
-    if (this.searchInput.value) {
-      this.userSearch.searchInputValue.next(this.searchInput.value);
-    }
+  private makeInputValueAvailableToService() {
+    if (this.searchInputControl.value)
+      this.userSearch.searchInputValue.next(this.searchInputControl.value);
+  }
 
-    const isUserNotOnJobsPath = this.router.url !== '/jobs';
-
-    if (isUserNotOnJobsPath) this.router.navigate(['/jobs']);
+  private redirectWhenUserIsNotOnJobsPath() {
+    const isUserNotOnJobsPath = this.router.url !== this.jobsRoute;
+    if (isUserNotOnJobsPath) this.router.navigate([this.jobsRoute]);
   }
 }
