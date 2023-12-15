@@ -1,16 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
+import { Hero } from 'src/interfaces/hero';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserSearchService {
-  constructor( private formBuilder: FormBuilder,) {}
+  constructor(private http: HttpClient) {}
+  searchEntry = new Subject<Hero[]>();
 
-  searchEntry = this.formBuilder.control('');
-
-  whenSearchEntryChanges(): Observable<string | null> {
-    return this.searchEntry.valueChanges
+  registerAvailableJobs() {
+    this.getJobs().subscribe(res => {
+      this.searchEntry.next(res)
+    })
+  }
+  
+  getJobs() {
+    return this.http.get<Hero[]>('api/heroes')
   }
 }

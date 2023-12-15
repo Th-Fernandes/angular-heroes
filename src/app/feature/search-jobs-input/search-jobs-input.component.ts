@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { UserSearchService } from 'src/app/core/services/user-search.service';
 
 @Component({
@@ -13,12 +14,9 @@ export class SearchJobsInputComponent {
   searchEntry = this.userSearch.searchEntry;
 
   onSubmitSearch(inputValue: string) {
+    this.userSearch.registerAvailableJobs();
     const isUserNotOnJobsPath = this.router.url !== '/jobs';
-    const isSearchEntryNotEmpty = this.searchEntry.value?.length !== 0;
 
-    if (isSearchEntryNotEmpty && isUserNotOnJobsPath)
-      this.router.navigate(['/jobs']);
-
-    this.searchEntry.setValue(inputValue)
+    if (isUserNotOnJobsPath) this.router.navigate(['/jobs']);
   }
 }
