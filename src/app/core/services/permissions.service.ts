@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class PermissionsService {
   canActivate(): boolean {
-    return false;
+    return true;
   }
   canMatch(): boolean {
     return true;

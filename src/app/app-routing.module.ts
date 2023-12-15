@@ -1,19 +1,11 @@
-import { Injectable, NgModule, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivatedRouteSnapshot, CanActivateFn, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './feature/dashboard/dashboard.component';
 import { HeroesComponent } from './feature/heroes/heroes.component';
 import { SelectedHeroComponent } from './feature/selected-hero/selected-hero.component';
 import { JobsPageComponent } from './feature/jobs-page/jobs-page.component';
-import { PermissionsService } from './core/services/permissions.service';
 import { ApplyformComponent } from './feature/applyform/applyform.component';
-
-
-const canActivateTeam: CanActivateFn =
-    (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-      console.log(route)
-      return inject(PermissionsService).canActivate();
-    };
+import { canActivateTeam } from './core/guards/canActivateTeam';
     
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -22,9 +14,7 @@ const routes: Routes = [
   { path: 'hero/detail/:id', component: SelectedHeroComponent },
   { path: 'jobs', component: JobsPageComponent },
   { path: 'apply', component: ApplyformComponent},
-  // { path: ''}
 ]
-
 
 @NgModule({
   declarations: [],
