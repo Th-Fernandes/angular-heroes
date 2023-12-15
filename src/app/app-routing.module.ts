@@ -6,6 +6,7 @@ import { HeroesComponent } from './feature/heroes/heroes.component';
 import { SelectedHeroComponent } from './feature/selected-hero/selected-hero.component';
 import { JobsPageComponent } from './feature/jobs-page/jobs-page.component';
 import { PermissionsService } from './core/services/permissions.service';
+import { ApplyformComponent } from './feature/applyform/applyform.component';
 
 
 const canActivateTeam: CanActivateFn =
@@ -19,7 +20,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, title: 'Dashboard - AngularHeroes' },
   { path: 'heroes', component: HeroesComponent, title: 'All Heroes - AngularHeroes', canActivate: [canActivateTeam] },
   { path: 'hero/detail/:id', component: SelectedHeroComponent },
-  { path: 'jobs', component: JobsPageComponent}
+  { path: 'jobs', component: JobsPageComponent },
+  { path: 'apply', component: ApplyformComponent},
+  // { path: ''}
 ]
 
 

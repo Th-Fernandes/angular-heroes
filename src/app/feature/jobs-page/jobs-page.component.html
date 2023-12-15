@@ -1,7 +1,8 @@
 <section>
+  <app-search-jobs-input></app-search-jobs-input>
   <ul>
-    <li *ngFor="let company of companies">
-      <div>{{company.companyName}}</div>
+    <li *ngFor="let job of jobs">
+        <h2>{{job.name}} - {{job.id}} </h2>
     </li>
   </ul>
 </section>

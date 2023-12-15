@@ -1,0 +1,85 @@
+<form action="" [formGroup]="applyInfoForm" (ngSubmit)="onSubmit()">
+
+
+  <div formGroupName="personalInfo">
+    <h2 class="text-lg font-bold py-2">Informações base </h2>
+    
+    <div>
+      <label for="userFirstName">Nome</label>
+      <input type="text" id="firstName" formControlName="firstName" required="true"/>
+      <app-invalid-input-message
+        message="Nome muito curto"
+        *ngIf="applyInfoForm.get('personalInfo.firstName')?.invalid && applyInfoForm.get('personalInfo.firstName')?.dirty"
+      />
+    </div>
+
+    <div>
+      <label for="userLastName">Sobrenome</label>
+      <input type="text" id="userLastName" formControlName="lastName">
+      <app-invalid-input-message
+        message="Sobrenome muito curto"
+        *ngIf="applyInfoForm.get('personalInfo.lastName')?.invalid && applyInfoForm.get('personalInfo.lastName')?.dirty"
+      />
+    </div>
+
+    <div>
+      <select formControlName="country">
+        <option value="BR">Brasil</option>
+        <option value="MX">México</option>
+        <option value="CO">Colombia</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="userState">State</label>
+      <input type="text" id="userState" formControlName="state">
+    </div>
+
+    <div>
+      <select formControlName="money">
+        <option value="USD">USD</option>
+        <option value="MXD">MXD</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="userWageType"></label>
+      <select formControlName="wageType" name="userWageType">
+        <option value="gross">gross</option>
+        <option value="net">net</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="userPhoneNumber">Phone Number</label>
+      <input type="tel" formControlName="phoneNumber" id="userPhoneNumber">
+    </div>
+
+    <div>
+      <select formControlName="englishLevel">
+        <option value="basic">Basic</option>
+        <option value="medium">Medium</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </div>
+  </div>
+
+  <div formArrayName="mainSkills">
+    <h2 class="text-lg font-bold py-2">Main Skills</h2>
+
+      <div>
+        <label for="userFirstSkill">first Skill</label>
+        <input type="text" formControlName="0" id="userFirstSkill">
+      </div>
+      <div>
+        <label for="userSecondSkill">Second Skill</label>
+        <input type="text" formControlName="1" id="userSecondSkill">
+      </div>
+      <div>
+        <label for="userThirdSkill">Third Skill</label>
+        <input type="text" formControlName="2" id="userThirdSkill">
+      </div>
+  </div>
+
+  <button type="submit">Enviar</button>
+</form>

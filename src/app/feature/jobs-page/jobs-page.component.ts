@@ -1,53 +1,31 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Company } from 'src/interfaces/company';
+import { Observable } from 'rxjs';
+import { UserSearchService } from 'src/app/core/services/user-search.service';
+import { Hero } from 'src/interfaces/hero';
 
 @Component({
   selector: 'app-jobs-page',
   templateUrl: './jobs-page.component.html',
 })
 export class JobsPageComponent implements OnInit {
-  companies!: Company[]
+  constructor(
+    private userSearch: UserSearchService,
+    private http: HttpClient
+  ) {}
 
-  ngOnInit(): void {
-    this.getCompanies()
-      .subscribe(companies => {
-        console.log(companies)
-        this.companies = companies
-      })
+  jobs: Hero[] = []
+  httpOptions = new HttpHeaders({ 'Content-Type': 'application/json' })
+
+  ngOnInit() {
+    this.getAvailableJobs().subscribe(res => this.jobs.push(...res))
+
+    this.userSearch.searchEntry.valueChanges.subscribe((searchEntry) => {
+      
+    });
   }
 
-  private getCompanies(): Observable<Company[]> {
-    const companies: Company[] = [
-      {
-        companyName: 'Info jobs',
-        jobs: [{
-          title: 'frontend dev',
-          locality: 'Rio de janeiro',
-          technicalSkills: ['CSS', 'HTML', 'javascript']
-        }, {
-          title: 'backend dev',
-          locality: 'Sao paulo',
-          technicalSkills: ['node', 'typescript']
-        }]
-      }, {
-        companyName: 'High tech',
-        jobs: [{
-          title: 'devops',
-          locality: 'remote',
-          technicalSkills: ['docker']
-        }]
-      }
-    ]
-
-    return of(companies)
-  }
-
-  getJobsTechnicalSkills(company: Company) {
-    let technicalSkills: string[][] = [];
-
-    company.jobs.forEach(job => technicalSkills.push(job.technicalSkills));
-
-    return technicalSkills;
+  getAvailableJobs():Observable<Hero[]> {
+    return this.http.get<Hero[]>('api/heroes')
   }
 }

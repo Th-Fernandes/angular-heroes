@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,9 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from 'src/app/core/services/in-memory-data.service';
 import { HeroSearchComponent } from './feature/hero-search/hero-search.component';
 import { JobsPageComponent } from './feature/jobs-page/jobs-page.component';
+import { ApplyformComponent } from './feature/applyform/applyform.component';
+import { InvalidInputMessageComponent } from './feature/invalid-input-message/invalid-input-message.component';
+import { SearchJobsInputComponent } from './feature/search-jobs-input/search-jobs-input.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +30,12 @@ import { JobsPageComponent } from './feature/jobs-page/jobs-page.component';
     TopNavComponent,
     HeroSearchComponent,
     JobsPageComponent,
+    SearchJobsInputComponent,
   ],
   imports: [
+    InvalidInputMessageComponent,
+    ApplyformComponent,
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
