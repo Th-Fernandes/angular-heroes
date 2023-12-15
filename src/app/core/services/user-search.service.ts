@@ -16,9 +16,14 @@ export class UserSearchService {
     return this.searchEntry.valueChanges;
   }
 
-  getJobs() {
-    this.http.get<Hero[]>('api/heroes').subscribe(res => {
-      this.searchEntry2.next(res);
+  registerUserInput() {
+    this.getJobs().subscribe(res => {
+      this.searchEntry2.next(res)
     })
   }
+  
+  getJobs() {
+    return this.http.get<Hero[]>('api/heroes')
+  }
+
 }

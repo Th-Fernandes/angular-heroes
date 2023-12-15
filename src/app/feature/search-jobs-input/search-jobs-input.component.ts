@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { UserSearchService } from 'src/app/core/services/user-search.service';
-import { Hero } from 'src/interfaces/hero';
 
 @Component({
   selector: 'app-search-jobs-input',
@@ -15,7 +14,7 @@ export class SearchJobsInputComponent {
   searchEntry = this.userSearch.searchEntry;
 
   onSubmitSearch(inputValue: string) {
-    this.userSearch.getJobs();
+    this.userSearch.registerUserInput();
     // const isUserNotOnJobsPath = this.router.url !== '/jobs';
     // const isSearchEntryNotEmpty = this.searchEntry.value?.length !== 0;
 
