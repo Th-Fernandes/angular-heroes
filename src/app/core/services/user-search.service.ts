@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,4 +10,7 @@ export class UserSearchService {
 
   searchEntry = this.formBuilder.control('');
 
+  whenSearchEntryChanges(): Observable<string | null> {
+    return this.searchEntry.valueChanges
+  }
 }

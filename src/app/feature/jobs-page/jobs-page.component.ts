@@ -20,9 +20,9 @@ export class JobsPageComponent implements OnInit {
   ngOnInit() {
     this.getAvailableJobs().subscribe(res => this.jobs.push(...res))
 
-    this.userSearch.searchEntry.valueChanges.subscribe((searchEntry) => {
-      
-    });
+    this.userSearch.whenSearchEntryChanges().subscribe(searchEntry => {
+      console.log('using method ', searchEntry)
+    })
   }
 
   getAvailableJobs():Observable<Hero[]> {
