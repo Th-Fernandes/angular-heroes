@@ -1,11 +1,11 @@
-<form (submit)="onSubmitSearch(inputValue.value)">
+<form (submit)="onSubmitSearch()">
   <label for="userSearchEntry">Search for a job</label>
   <div
     class="flex justify-between p-2 border border-blue-500 max-w-md rounded-md focus-within:outline-2 focus-within:outline-blue-500 focus-within:outline cursor-pointer"
   >
     <input 
       type="search" 
-
+      [formControl]="searchInput"
       #inputValue 
       id="userSearchEntry" 
       class="flex-1 outline-none cursor-pointer" />

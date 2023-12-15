@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Hero } from 'src/interfaces/hero';
 
 @Injectable({
@@ -8,11 +8,13 @@ import { Hero } from 'src/interfaces/hero';
 })
 export class UserSearchService {
   constructor(private http: HttpClient) {}
-  searchEntry = new Subject<Hero[]>();
+
+  availableJobs = new Subject<Hero[]>();
+  searchInputValue = new BehaviorSubject<string>('');
 
   registerAvailableJobs() {
     this.getJobs().subscribe(res => {
-      this.searchEntry.next(res)
+      this.availableJobs.next(res)
     })
   }
   

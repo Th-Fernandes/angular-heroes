@@ -21,6 +21,6 @@ export class JobsPageComponent implements OnInit {
   }
 
   getJobsByUserSearchEntry() {
-    this.userSearch.searchEntry.subscribe((values) => (this.jobs = values));
+    this.userSearch.availableJobs.subscribe((values) => (this.jobs = values));
   }
 }
