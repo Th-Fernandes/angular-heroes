@@ -10,7 +10,7 @@ export class UserSearchService {
   constructor(private http: HttpClient) {}
   searchEntry = new Subject<Hero[]>();
 
-  registerUserInput() {
+  registerAvailableJobs() {
     this.getJobs().subscribe(res => {
       this.searchEntry.next(res)
     })

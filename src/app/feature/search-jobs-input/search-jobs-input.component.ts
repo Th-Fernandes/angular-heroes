@@ -14,13 +14,9 @@ export class SearchJobsInputComponent {
   searchEntry = this.userSearch.searchEntry;
 
   onSubmitSearch(inputValue: string) {
-    this.userSearch.registerUserInput();
-    // const isUserNotOnJobsPath = this.router.url !== '/jobs';
-    // const isSearchEntryNotEmpty = this.searchEntry.value?.length !== 0;
+    this.userSearch.registerAvailableJobs();
+    const isUserNotOnJobsPath = this.router.url !== '/jobs';
 
-    // this.userSearch.searchEntry.setValue(inputValue)
-
-    // if (isSearchEntryNotEmpty && isUserNotOnJobsPath)
-      this.router.navigate(['/jobs']);
+    if (isUserNotOnJobsPath) this.router.navigate(['/jobs']);
   }
 }
