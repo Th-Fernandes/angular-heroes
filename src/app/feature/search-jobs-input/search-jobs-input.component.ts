@@ -17,7 +17,7 @@ export class SearchJobsInputComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.searchInputValueSubscription =
-      this.userSearch.searchInputValue.subscribe((inputValue) => {
+      this.userSearch.searchInput$.subscribe((inputValue) => {
         this.searchInputControl.setValue(inputValue);
       });
   }
@@ -33,7 +33,7 @@ export class SearchJobsInputComponent implements OnInit, OnDestroy {
 
   private makeInputValueAvailableToService() {
     if (this.searchInputControl.value)
-      this.userSearch.searchInputValue.next(this.searchInputControl.value);
+      this.userSearch.searchInput$.next(this.searchInputControl.value);
   }
 
   private redirectWhenUserIsNotOnJobsPath() {

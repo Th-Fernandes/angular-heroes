@@ -12,13 +12,13 @@ export class JobsPageComponent implements OnInit {
   jobs: (Hero | null)[] = [];
 
   ngOnInit() {
-    this.userSearch.searchInputValue.subscribe(() =>
+    this.userSearch.searchInput$.subscribe(() =>
       this.getJobsDependingOnSearchInputValue()
     );
   }
 
   private getJobsDependingOnSearchInputValue() {
-    if (this.userSearch.searchInputValue.value.length == 0) {
+    if (this.userSearch.searchInput$.value.length == 0) {
       this.getAllJobs();
     } else {
       this.getJobsBySearchInputValue();

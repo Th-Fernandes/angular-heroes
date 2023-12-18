@@ -7,17 +7,10 @@ import { Hero } from 'src/interfaces/hero';
   providedIn: 'root',
 })
 export class UserSearchService {
-  constructor(private http: HttpClient) {}
-
-  availableJobs = new Subject<Hero[]>();
-  searchInputValue = new BehaviorSubject<string>('');
+  searchInput$ = new BehaviorSubject<string>('');
   private jobFieldsToBeModified: (keyof Hero)[] = ['position', 'company'];
 
-  registerAvailableJobs() {
-    this.getAllJobs().subscribe((res) => {
-      this.availableJobs.next(res);
-    });
-  }
+  constructor(private http: HttpClient) {}
 
   getAllJobs(): Observable<Hero[]> {
     return this.http.get<Hero[]>('api/heroes');
@@ -59,7 +52,7 @@ export class UserSearchService {
   }
 
   private validateInputValue() {
-    return this.searchInputValue.value
+    return this.searchInput$.value
       .trim()
       .toLowerCase()
   }
