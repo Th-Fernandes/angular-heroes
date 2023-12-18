@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserSearchService } from 'src/app/core/services/user-search.service';
 
 @Component({
   selector: 'app-search-jobs-input',
   templateUrl: './search-jobs-input.component.html',
 })
-export class SearchJobsInputComponent implements OnInit {
+export class SearchJobsInputComponent implements OnInit, OnDestroy {
   constructor(private userSearch: UserSearchService, private router: Router) {}
 
   searchInputControl = new FormControl<string>('');
   jobsRoute = '/jobs';
+  searchInputValueSubscription!: Subscription;
 
   ngOnInit(): void {
-    this.userSearch.searchInputValue.subscribe((inputValue) => {
-      console.log('lorem');
-      this.searchInputControl.setValue(inputValue);
-    });
+    this.searchInputValueSubscription =
+      this.userSearch.searchInputValue.subscribe((inputValue) => {
+        this.searchInputControl.setValue(inputValue);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.searchInputValueSubscription.unsubscribe();
   }
 
   onSubmitSearch() {
