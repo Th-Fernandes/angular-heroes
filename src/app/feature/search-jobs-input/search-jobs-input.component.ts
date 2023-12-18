@@ -21,7 +21,6 @@ export class SearchJobsInputComponent implements OnInit {
   }
 
   onSubmitSearch() {
-    this.userSearch.registerAvailableJobs();
     this.makeInputValueAvailableToService();
     this.redirectWhenUserIsNotOnJobsPath();
   }

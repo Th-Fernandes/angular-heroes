@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, filter, map } from 'rxjs';
 import { Hero } from 'src/interfaces/hero';
 
 @Injectable({
@@ -13,12 +13,30 @@ export class UserSearchService {
   searchInputValue = new BehaviorSubject<string>('');
 
   registerAvailableJobs() {
-    this.getJobs().subscribe(res => {
-      this.availableJobs.next(res)
-    })
+    this.getAllJobs().subscribe((res) => {
+      this.availableJobs.next(res);
+    });
   }
-  
-  getJobs() {
-    return this.http.get<Hero[]>('api/heroes')
+
+  getAllJobs(): Observable<Hero[]> {
+    return this.http.get<Hero[]>('api/heroes');
+  }
+
+  getJobsBySearchInputValue() {
+    return this.getAllJobs().pipe(
+      map((heroes) =>
+        heroes.map((hero) => {
+          const conditions = [
+            hero.company.includes(this.searchInputValue.value),
+            hero.position.includes(this.searchInputValue.value),
+            hero.salary === Number(this.searchInputValue.value),
+          ];
+
+          console.log(conditions)
+          if (conditions.includes(true)) return hero;
+          return null
+        })
+      )
+    );
   }
 }

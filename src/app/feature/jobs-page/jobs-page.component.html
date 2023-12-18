@@ -2,7 +2,7 @@
   <app-search-jobs-input></app-search-jobs-input>
   <ul>
     <li *ngFor="let job of jobs">
-        <h2>{{job.name}} - {{job.id}} </h2>
+        <h2>{{job?.name}} - {{job?.id}} </h2>
     </li>
   </ul>
 </section>
