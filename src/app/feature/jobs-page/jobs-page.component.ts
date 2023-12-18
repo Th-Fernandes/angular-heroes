@@ -9,18 +9,28 @@ import { Hero } from 'src/interfaces/hero';
 export class JobsPageComponent implements OnInit {
   constructor(private userSearch: UserSearchService) {}
 
-  jobs: Hero[] = [];
+  jobs: (Hero | null)[] = [];
 
   ngOnInit() {
-    if (this.jobs.length == 0) this.getAllJobs();
-    this.getJobsByUserSearchEntry();
+    this.userSearch.searchInputValue.subscribe(() =>
+      this.getJobsDependingOnSearchInputValue()
+    );
   }
 
-  getAllJobs() {
-    this.userSearch.getJobs().subscribe((jobs) => (this.jobs = jobs));
+  private getJobsDependingOnSearchInputValue() {
+    if (this.userSearch.searchInputValue.value.length == 0) {
+      this.getAllJobs();
+    } else {
+      this.getJobsBySearchInputValue();
+    }
+  }
+  private getAllJobs() {
+    this.userSearch.getAllJobs().subscribe((jobs) => (this.jobs = jobs));
   }
 
-  getJobsByUserSearchEntry() {
-    this.userSearch.availableJobs.subscribe((values) => (this.jobs = values));
+  private getJobsBySearchInputValue() {
+    this.userSearch
+      .getJobsBySearchInputValue()
+      .subscribe((jobs) => (this.jobs = jobs));
   }
 }
