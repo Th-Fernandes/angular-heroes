@@ -11,6 +11,7 @@ export class UserSearchService {
 
   availableJobs = new Subject<Hero[]>();
   searchInputValue = new BehaviorSubject<string>('');
+  private jobFieldsToBeModified: (keyof Hero)[] = ['position', 'company'];
 
   registerAvailableJobs() {
     this.getAllJobs().subscribe((res) => {
@@ -25,20 +26,28 @@ export class UserSearchService {
   getJobsBySearchInputValue() {
     return this.getAllJobs().pipe(
       map((jobs) => {
-        const caseChangedJob = jobs.map(job => this.toggleJobPropertiesCase(job))
-        return caseChangedJob.map((job) => (this.findJobByQuery(job) ? job : null))
+        const caseChangedJob = jobs.map((job) =>
+          this.toggleJobPropertiesCase(job)
+        );
+        return caseChangedJob.map((job) =>
+          this.findJobByQuery(job) ? job : null
+        );
       })
     );
   }
 
+
   private toggleJobPropertiesCase(job: Hero) {
-    job.position = job.position.toLowerCase();
-    job.company = job.company.toLowerCase();
-    return job
+    for (let jobFieldToBeModified of this.jobFieldsToBeModified)
+    // @ts-ignore
+      job[jobFieldToBeModified] = job[jobFieldToBeModified]
+        .toString().toLowerCase();
+
+    return job;
   }
 
   private findJobByQuery(job: Hero) {
-    const lowerCaseInputValue = this.searchInputValue.value.toLowerCase();
+    const lowerCaseInputValue = this.validateInputValue();
 
     const conditions = [
       job.company.includes(lowerCaseInputValue),
@@ -47,5 +56,11 @@ export class UserSearchService {
     ];
 
     return conditions.includes(true);
+  }
+
+  private validateInputValue() {
+    return this.searchInputValue.value
+      .trim()
+      .toLowerCase()
   }
 }
