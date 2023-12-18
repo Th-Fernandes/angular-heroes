@@ -1,4 +1,7 @@
 export interface Hero {
   id: number;
-  name: string;
+  name: string; /* TODO: DELETE THIS */
+  position: string;
+  company: string;
+  salary: number;
 }
