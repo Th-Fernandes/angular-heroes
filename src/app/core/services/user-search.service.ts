@@ -24,17 +24,26 @@ export class UserSearchService {
 
   getJobsBySearchInputValue() {
     return this.getAllJobs().pipe(
-      map((heroes) =>
-        heroes.map((hero) => (this.findJobByQuery(hero) ? hero : null))
-      )
+      map((jobs) => {
+        const caseChangedJob = jobs.map(job => this.toggleJobPropertiesCase(job))
+        return caseChangedJob.map((job) => (this.findJobByQuery(job) ? job : null))
+      })
     );
   }
 
+  private toggleJobPropertiesCase(job: Hero) {
+    job.position = job.position.toLowerCase();
+    job.company = job.company.toLowerCase();
+    return job
+  }
+
   private findJobByQuery(job: Hero) {
+    const lowerCaseInputValue = this.searchInputValue.value.toLowerCase();
+
     const conditions = [
-      job.company.includes(this.searchInputValue.value),
-      job.position.includes(this.searchInputValue.value),
-      job.salary === Number(this.searchInputValue.value),
+      job.company.includes(lowerCaseInputValue),
+      job.position.includes(lowerCaseInputValue),
+      job.salary === Number(lowerCaseInputValue),
     ];
 
     return conditions.includes(true);
