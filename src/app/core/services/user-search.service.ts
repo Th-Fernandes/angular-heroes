@@ -8,7 +8,6 @@ import { Hero } from 'src/interfaces/hero';
 })
 export class UserSearchService {
   searchInput$ = new BehaviorSubject<string>('');
-  private jobFieldsToBeModified: (keyof Hero)[] = ['position', 'company'];
 
   constructor(private http: HttpClient) {}
 
@@ -19,41 +18,58 @@ export class UserSearchService {
   getJobsBySearchInputValue() {
     return this.getAllJobs().pipe(
       map((jobs) => {
-        const caseChangedJob = jobs.map((job) =>
-          this.toggleJobPropertiesCase(job)
-        );
-        return caseChangedJob.map((job) =>
+        const standardizedJobs = this.standardizeJobsProperties(jobs);
+        return standardizedJobs.map((job) =>
           this.findJobByQuery(job) ? job : null
         );
       })
     );
   }
 
+  standardizeJobsProperties(jobs: Hero[]) {
+    const standards = [
+      this.toggleJobPropertiesCase,
+      this.setJobPropertiesAccentsInsensitive.bind(this),
+    ];
+    let standardizedJobs: Hero[] = jobs;
+
+    for (let standard of standards)
+      standardizedJobs.map((job) => standard(job));
+
+    return standardizedJobs;
+  }
 
   private toggleJobPropertiesCase(job: Hero) {
-    for (let jobFieldToBeModified of this.jobFieldsToBeModified)
-    // @ts-ignore
-      job[jobFieldToBeModified] = job[jobFieldToBeModified]
-        .toString().toLowerCase();
+    job.position = job.position.toLowerCase();
+    job.company = job.company.toLowerCase();
+    
+    return job;
+  }
+
+  private setJobPropertiesAccentsInsensitive(job: Hero) {
+    job.position = this.removeAccents(job.position);
+    job.company = this.removeAccents(job.company);
 
     return job;
   }
 
   private findJobByQuery(job: Hero) {
-    const lowerCaseInputValue = this.validateInputValue();
+    const standardizedJobInputValue = this.standardizeInputValue();
 
     const conditions = [
-      job.company.includes(lowerCaseInputValue),
-      job.position.includes(lowerCaseInputValue),
-      job.salary === Number(lowerCaseInputValue),
+      job.company.includes(standardizedJobInputValue),
+      job.position.includes(standardizedJobInputValue),
+      job.salary === Number(standardizedJobInputValue),
     ];
 
     return conditions.includes(true);
   }
 
-  private validateInputValue() {
-    return this.searchInput$.value
-      .trim()
-      .toLowerCase()
+  private standardizeInputValue() {
+    return this.removeAccents(this.searchInput$.value.trim().toLowerCase());
+  }
+
+  private removeAccents(str: string): string {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 }

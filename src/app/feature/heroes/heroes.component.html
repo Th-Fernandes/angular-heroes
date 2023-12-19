@@ -1,11 +1,12 @@
 <section>
-  <ul class="flex gap-4 flex-wrap max-w-full">
+  <ul class="flex gap-4 flex-wrap max-w-full" *ngIf="heroes.length > 0; else loading">
     <app-heroes-li 
       *ngFor="let hero of heroes"
       [hero]="hero"
       (deleteHeroEvent)="deleteHero(hero.id)"
     />
   </ul>
+  <ng-template #loading>loading...</ng-template>
   
   <div class="flex flex-col max-w-xs">
     <label for="heroName">add new hero</label>
