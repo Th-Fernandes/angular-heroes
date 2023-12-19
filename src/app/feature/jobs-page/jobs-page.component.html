@@ -1,23 +1,31 @@
 <section class="my-8 px-4">
   <app-search-jobs-input />
-  <app-filter-jobs [fetchedJobs]="jobs"/>
+  <app-filter-jobs [fetchedJobs]="jobs" />
   <ul class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
-    <li
-      *ngFor="let job of jobs"
-      class="bg-gray-100 rounded-lg hover:shadow-lg transition-shadow hover:scale-[101%] transition-transform"
-    >
-      <div *ngIf="job">
-        <div class="w-full h-32 bg-gray-500 rounded-t-lg"></div>
-        <div class="p-2 md:p-4">
-          <h2 class="text-xl">{{ job.position }} - (${{job.salary}}) </h2>
-          <p class="text-gray-800">{{ job.company }}</p>
-          <button
-            class="bg-sky-500 w-full rounded-md text-white font-bold py-1 hover:bg-sky-700 transition-colors hidden cursor-pointer md:block"
-          >
-            apply
-          </button>
+    <ng-container *ngIf="filteredJobs; else allJobsLi">
+      <li *ngFor="let filteredJob of filteredJobs">
+        {{ filteredJob?.position }} - {{ filteredJob?.company }}
+      </li>
+    </ng-container>
+
+    <ng-template #allJobsLi>
+      <li
+        *ngFor="let job of jobs"
+        class="bg-gray-100 rounded-lg hover:shadow-lg transition-shadow hover:scale-[101%] transition-transform"
+      >
+        <div *ngIf="job">
+          <div class="w-full h-32 bg-gray-500 rounded-t-lg"></div>
+          <div class="p-2 md:p-4">
+            <h2 class="text-xl">{{ job.position }} - (${{ job.salary }})</h2>
+            <p class="text-gray-800">{{ job.company }}</p>
+            <button
+              class="bg-sky-500 w-full rounded-md text-white font-bold py-1 hover:bg-sky-700 transition-colors hidden cursor-pointer md:block"
+            >
+              apply
+            </button>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </ng-template>
   </ul>
 </section>

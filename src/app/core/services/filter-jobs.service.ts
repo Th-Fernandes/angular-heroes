@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Filters, SalaryRange } from 'src/interfaces/filters';
 import { Hero } from 'src/interfaces/hero';
 
@@ -6,21 +7,27 @@ import { Hero } from 'src/interfaces/hero';
   providedIn: 'root',
 })
 export class FilterJobsService {
-  filteredJobs?: (Hero | null)[];
+  filteredJobs = new Subject<(Hero|null)[]>();
 
   constructor() {}
 
-  // applyAllFilters(jobs: Hero[]) {
-  //   const filters: ((job: Hero) => Hero[])[] = []
+  applyAllFilters(jobs: (Hero | null)[], selectedOptions: Partial<Filters>) {
+    const filters = [
+      {
+        applyFilter: this.filterBySalaryRange,
+        selectedOption: selectedOptions.salaryRange
+      },
+    ]
+    let filteredJobs: ( Hero | null)[] = []
 
-  //   for(let filter of filters) {
-  //     jobs.map(job => filter(job))
-  //   }
-  // }
+    for(let {applyFilter, selectedOption} of filters) {
+      filteredJobs = jobs.filter(job => applyFilter(job, selectedOption))
+    }
+    this.filteredJobs.next(filteredJobs)
+  }
 
   filterBySalaryRange(job: Hero | null, conditionValue: SalaryRange | null | undefined) {
     if(!job || !conditionValue) return null
-    console.log(conditionValue)
 
     const conditions = {
       0: job.salary >= 1000 && job.salary <= 2500,
@@ -32,5 +39,9 @@ export class FilterJobsService {
     const doesJobMatchesCondition =  conditions[conditionValue];
 
     return doesJobMatchesCondition ? job : null;
+  }
+
+  filterByPositionLevel() {
+
   }
 }

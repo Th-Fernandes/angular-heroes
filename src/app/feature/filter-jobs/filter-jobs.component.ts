@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { FilterJobsService } from 'src/app/core/services/filter-jobs.service';
+import { Filters } from 'src/interfaces/filters';
 import { Hero } from 'src/interfaces/hero';
 
 @Component({
@@ -7,18 +9,20 @@ import { Hero } from 'src/interfaces/hero';
   templateUrl: './filter-jobs.component.html',
 })
 export class FilterJobsComponent {
-  @Input() fetchedJobs!: (Hero | null)[]
+  @Input() fetchedJobs!: (Hero | null)[];
 
-  filtersInputs = this.formBuilder.group({
-    salaryRange: '',
-    positionLevel: '',
-    opportunityType: ''
-  })
+  filtersInputs = this.formBuilder.group<Filters>({
+    salaryRange: null,
+    positionLevel: null,
+    opportunityType: null,
+  });
 
-  constructor(private formBuilder:FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private filterJobs: FilterJobsService
+  ) {}
 
   onSubmit() {
-    console.log(this.filtersInputs.value)
-    console.log(this.fetchedJobs)
+    this.filterJobs.applyAllFilters(this.fetchedJobs, this.filtersInputs.value);
   }
 }
