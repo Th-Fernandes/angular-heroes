@@ -7,6 +7,7 @@ export const HEROES: Hero[] = [
     company: 'ADC Solutions',
     position: 'desenvolvedor front-end junior',
     salary: 2000,
+    level: 'jr'
   },
   {
     id: 13,
@@ -14,6 +15,7 @@ export const HEROES: Hero[] = [
     company: 'ADC Solutions',
     position: 'desenvolvedor back-end sênior',
     salary: 9999.9,
+    level: 'sr'
   },
   {
     id: 14,
@@ -21,6 +23,7 @@ export const HEROES: Hero[] = [
     company: 'Polygon tech',
     position: 'desenvolvedor mobile pleno',
     salary: 6399,
+    level: 'pl'
   },
   {
     id: 15,
@@ -28,6 +31,7 @@ export const HEROES: Hero[] = [
     company: 'Polygon tech',
     position: 'desenvolvedor mobile pleno (java)',
     salary: 6399,
+    level: 'pl'
   },
   {
     id: 16,
@@ -35,6 +39,7 @@ export const HEROES: Hero[] = [
     company: 'Polygon tech',
     position: 'desenvolvedor mobile pleno (flutter)',
     salary: 7399,
+    level: 'jr'
   },
   {
     id: 17,
@@ -42,6 +47,7 @@ export const HEROES: Hero[] = [
     company: 'Polygon tech',
     position: 'desenvolvedor mobile pleno (java)',
     salary: 6399,
+    level: 'jr'
   },
   {
     id: 18,
@@ -49,6 +55,7 @@ export const HEROES: Hero[] = [
     company: 'Polygon tech',
     position: 'desenvolvedor mobile pleno (java)',
     salary: 5399,
+    level: 'jr'
   },
   {
     id: 19,
@@ -56,6 +63,7 @@ export const HEROES: Hero[] = [
     company: 'Polygon tech',
     position: 'desenvolvedor mobile pleno (java)',
     salary: 6399,
+    level: 'jr'
   },
   {
     id: 20,
@@ -63,5 +71,6 @@ export const HEROES: Hero[] = [
     company: 'Polygon tech',
     position: 'desenvolvedor mobile pleno (java)',
     salary: 6399,
+    level: 'jr'
   },
 ];
