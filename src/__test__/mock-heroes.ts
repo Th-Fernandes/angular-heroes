@@ -6,7 +6,7 @@ export const HEROES: Hero[] = [
     name: 'Dr. Mundo',
     company: 'ADC Solutions',
     position: 'desenvolvedor front-end junior',
-    salary: 3999.9,
+    salary: 2000,
   },
   {
     id: 13,
@@ -48,7 +48,7 @@ export const HEROES: Hero[] = [
     name: 'Dr. IQ',
     company: 'Polygon tech',
     position: 'desenvolvedor mobile pleno (java)',
-    salary: 6399,
+    salary: 5399,
   },
   {
     id: 19,
