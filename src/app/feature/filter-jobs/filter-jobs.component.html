@@ -1,0 +1,23 @@
+<form [formGroup]="filtersInputs" (ngSubmit)="onSubmit()">
+  <select formControlName="salaryRange">
+    <option value="">R$1000 até R$2500</option>
+    <option value="">R$2500 até R$4000</option>
+    <option value="">R$4000 até R$6000</option>
+    <option value="">R$6000 até R$10000</option>
+    <option value="">Maior que 10000</option>
+  </select>
+
+  <select formControlName="positionLevel">
+    <option value="jr">Júnior</option>
+    <option value="pl">Pleno</option>
+    <option value="sr">Sênior</option>
+  </select>
+
+  <select formControlName="opportunityType">
+    <option value="faceToFace">presencial</option>
+    <option value="hybrid">híbrido</option>
+    <option value="remote">remoto</option>
+  </select>
+
+  <button>Filter</button>
+</form>

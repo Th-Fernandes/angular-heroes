@@ -18,6 +18,7 @@ import { JobsPageComponent } from './feature/jobs-page/jobs-page.component';
 import { ApplyformComponent } from './feature/applyform/applyform.component';
 import { InvalidInputMessageComponent } from './feature/invalid-input-message/invalid-input-message.component';
 import { SearchJobsInputComponent } from './feature/search-jobs-input/search-jobs-input.component';
+import { FilterJobsComponent } from './feature/filter-jobs/filter-jobs.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SearchJobsInputComponent } from './feature/search-jobs-input/search-job
     HeroSearchComponent,
     JobsPageComponent,
     SearchJobsInputComponent,
+    FilterJobsComponent,
   ],
   imports: [
     InvalidInputMessageComponent,

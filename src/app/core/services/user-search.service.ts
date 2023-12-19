@@ -26,7 +26,7 @@ export class UserSearchService {
     );
   }
 
-  standardizeJobsProperties(jobs: Hero[]) {
+  private standardizeJobsProperties(jobs: Hero[]) {
     const standards = [
       this.toggleJobPropertiesCase,
       this.setJobPropertiesAccentsInsensitive.bind(this),
@@ -37,6 +37,18 @@ export class UserSearchService {
       standardizedJobs.map((job) => standard(job));
 
     return standardizedJobs;
+  }
+  
+  private findJobByQuery(job: Hero) {
+    const standardizedJobInputValue = this.standardizeInputValue();
+
+    const conditions = [
+      job.company.includes(standardizedJobInputValue),
+      job.position.includes(standardizedJobInputValue),
+      job.salary === Number(standardizedJobInputValue),
+    ];
+
+    return conditions.includes(true);
   }
 
   private toggleJobPropertiesCase(job: Hero) {
@@ -53,17 +65,6 @@ export class UserSearchService {
     return job;
   }
 
-  private findJobByQuery(job: Hero) {
-    const standardizedJobInputValue = this.standardizeInputValue();
-
-    const conditions = [
-      job.company.includes(standardizedJobInputValue),
-      job.position.includes(standardizedJobInputValue),
-      job.salary === Number(standardizedJobInputValue),
-    ];
-
-    return conditions.includes(true);
-  }
 
   private standardizeInputValue() {
     return this.removeAccents(this.searchInput$.value.trim().toLowerCase());
